@@ -1,0 +1,97 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.regImg{
+  height: 100vh;
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.regBox{
+  width: 497px;
+  margin-left: auto;
+  margin-top: 225px;
+}
+.sidebar{
+  width: 125px;
+  height: 95vh;
+  background: #5F35F5;
+  margin: 0 auto;
+  margin-top: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 38px 0;
+}
+.profilimg{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.icon{
+  color: #fff;
+  font-size: 46px;
+  margin: 15px 0;
+  cursor: pointer;
+}
+.box{
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 26px 0px rgba(0,0,0,0.75);
+  padding: 20px;
+  overflow-y: scroll;
+  height: 250px;
+  margin: 20px 0;
+}
+.list{
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid red;
+  padding-bottom: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.list:last-child{
+  border-bottom: 0;
+}
+.list img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+.active{
+  position: relative;
+  z-index: 2;
+}
+
+.active .icon{
+  color: #5F35F5;
+}
+
+.active:after{
+  width: 100px;
+  height: 60px;
+  background: #fff;
+  position: absolute; 
+  left: -7px;
+  top: -57px;
+  content: "";
+  z-index: -1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.active:before {
+  width: 5px;
+  height: 60px;
+  background: #5F35F5;
+  position: absolute;
+  left: 80px;
+  top: -57px;
+  content: "";
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
