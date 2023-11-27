@@ -22,7 +22,7 @@ const Logout = () => {
     signOut(auth).then(() => {
       navigate("/login")
       dispatch(loggedUser(null))
-      localStorage.removeItem("null")
+      localStorage.removeItem("user")
     })
   }
 

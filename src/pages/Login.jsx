@@ -116,7 +116,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(userInfo != null){
-      nagivate("/home")
+      nagivate("/logout")
     }
   },[])
 
