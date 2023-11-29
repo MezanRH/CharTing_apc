@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { getDatabase, push, ref, set } from "firebase/database";
+
 
 const style = {
   position: 'absolute',
@@ -42,6 +44,8 @@ const MyButton = styled(Button)({
 });
 
 const Registation = () => {
+
+  const db = getDatabase();
 
   let nagivate = useNavigate()
 
@@ -75,8 +79,15 @@ const Registation = () => {
   let handleSubmit = ()=>{
     setLoder(true)
     createUserWithEmailAndPassword(auth, regdata.email, regdata.password).then((userCredential) => {
+      console.log(userCredential.user.uid)
       sendEmailVerification(auth.currentUser)
   .then(() => {
+    set(push(ref(db, 'users')), {
+      username: regdata.fullname,
+      email: userCredential.user.email,
+      profile_picture : "https://firebasestorage.googleapis.com/v0/b/binodon-706c0.appspot.com/o/avata.jpg?alt=media&token=a30b0498-9ebf-4ecc-bd3b-7740f3dea871"
+    });
+  
     setRegdata({
       email: "",
       fullname: "",

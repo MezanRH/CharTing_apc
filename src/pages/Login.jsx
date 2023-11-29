@@ -61,17 +61,17 @@ const Login = () => {
       console.log(userCredential)
       dispatch(loggedUser(userCredential.user))
       localStorage.setItem("user",JSON.stringify(userCredential.user))
-      if(userCredential.user.emailVerified){
+      // if(userCredential.user.emailVerified){
         setRegdata({
           email: "",
           password: ""
         })
         setLoder(false)
         nagivate("/logout")
-      }else{
-        toast("please varify your email")
-        setLoder(false)
-      }
+      // }else{
+      //   toast("please varify your email")
+      //   setLoder(false)
+      // }
     })
     .catch((error) => {
       const errorCode = error.code;
