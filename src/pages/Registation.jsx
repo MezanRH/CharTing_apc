@@ -66,15 +66,15 @@ const Registation = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [showicon,setShowIcon] = useState(false);
+  const [showPassword,setShowPassword] = useState(false)
   const showEye = ()=> {
     setShowIcon(true)
-    setShowPassword(false)
+    setShowPassword(true)
   }
   const hidenEye = ()=> {
     setShowIcon(false)
-    setShowPassword(true)
+    setShowPassword(false)
   }
-  const [showPassword,setShowPassword] = useState(false)
 
   // let [errordata,setErrordata] = useState({
   //   emailError:"",
@@ -203,9 +203,9 @@ const Registation = () => {
             <MyInput onChange={handleChange} name='password' type= {showPassword ? "text" : "password"}  id="outlined-basic" label="Password" variant="outlined" value={regdata.password} />
             {
               showicon ? 
-              <FaEyeSlash className='eye' onClick={hidenEye}/>
+              <FaRegEye className='eye' onClick={hidenEye}/>
               :
-              <FaRegEye className='eye' onClick={showEye}/>
+              <FaEyeSlash className='eye' onClick={showEye}/>
             }
           </div>
           {loader 
