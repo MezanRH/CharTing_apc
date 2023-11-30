@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import list1 from '../assets/list1.png'
 import Button from '@mui/material/Button';
 import { getDatabase, ref, onValue } from "firebase/database";
 import TextField from '@mui/material/TextField';
@@ -54,21 +53,13 @@ const UserList = () => {
           </div>
           ))
 
-        :searchUserList == 0 ?
-        userList.map(item=>(
-          <div className='list' key={item.uId}>
-            <img src={list1} />
-            <h3>{item.username}</h3>
-            <Button variant="contained">Join</Button>
-          </div>
-          ))
         :
          searchUserList == userList ? 
 
 
         userList.map(item=>(
         <div className='list' key={item.uId}>
-          <img src={list1} />
+          <img src={item.profile_picture} />
           <h3>{item.username}</h3>
           <Button variant="contained">Join</Button>
         </div>

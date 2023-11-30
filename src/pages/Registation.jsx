@@ -15,6 +15,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { getDatabase, push, ref, set } from "firebase/database";
+import { FaRegEye } from "react-icons/fa6";
+import { FaEyeSlash } from "react-icons/fa";
 
 
 const style = {
@@ -63,6 +65,16 @@ const Registation = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [showicon,setShowIcon] = useState(false);
+  const showEye = ()=> {
+    setShowIcon(true)
+    setShowPassword(false)
+  }
+  const hidenEye = ()=> {
+    setShowIcon(false)
+    setShowPassword(true)
+  }
+  const [showPassword,setShowPassword] = useState(false)
 
   // let [errordata,setErrordata] = useState({
   //   emailError:"",
@@ -187,8 +199,14 @@ const Registation = () => {
           <div>
             <MyInput onChange={handleChange} name='fullname' id="outlined-basic" label="Full Name" variant="outlined" value={regdata.fullname} />
           </div>
-          <div>
-            <MyInput onChange={handleChange} name='password' type='password' id="outlined-basic" label="Password" variant="outlined" value={regdata.password} />
+          <div className='myInput'>
+            <MyInput onChange={handleChange} name='password' type= {showPassword ? "text" : "password"}  id="outlined-basic" label="Password" variant="outlined" value={regdata.password} />
+            {
+              showicon ? 
+              <FaEyeSlash className='eye' onClick={hidenEye}/>
+              :
+              <FaRegEye className='eye' onClick={showEye}/>
+            }
           </div>
           {loader 
           ? 
