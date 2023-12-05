@@ -7,7 +7,7 @@ import Google from '../assets/Google.png'
 import { styled } from '@mui/material/styles';
 // import Alert from '@mui/material/Alert';
 import { toast } from 'react-toastify';
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider,sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup, GoogleAuthProvider,sendPasswordResetEmail,updateProfile } from "firebase/auth";
 import { ColorRing } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom';
 
@@ -91,14 +91,19 @@ const Registation = () => {
   let handleSubmit = ()=>{
     setLoder(true)
     createUserWithEmailAndPassword(auth, regdata.email, regdata.password).then((userCredential) => {
-      console.log(userCredential.user.uid)
-      sendEmailVerification(auth.currentUser)
-  .then(() => {
-    set(push(ref(db, 'users')), {
-      username: regdata.fullname,
-      email: userCredential.user.email,
-      profile_picture : "https://firebasestorage.googleapis.com/v0/b/binodon-706c0.appspot.com/o/avata.jpg?alt=media&token=a30b0498-9ebf-4ecc-bd3b-7740f3dea871"
-    });
+
+      updateProfile(auth.currentUser, {
+        displayName: regdata.fullname, photoURL: "https://firebasestorage.googleapis.com/v0/b/binodon-706c0.appspot.com/o/avata.jpg?alt=media&token=a30b0498-9ebf-4ecc-bd3b-7740f3dea871"
+      }).then(() => {
+
+        console.log(userCredential.user.uid)
+        sendEmailVerification(auth.currentUser)
+        .then(() => {
+        set(push(ref(db, 'users')), {
+        username: regdata.fullname,
+        email: userCredential.user.email,
+        profile_picture : "https://firebasestorage.googleapis.com/v0/b/binodon-706c0.appspot.com/o/avata.jpg?alt=media&token=a30b0498-9ebf-4ecc-bd3b-7740f3dea871"
+      });
   
     setRegdata({
       email: "",
@@ -107,7 +112,10 @@ const Registation = () => {
     })
     setLoder(false)
     nagivate("/login")
-  });
+     });
+      })
+
+      
       console.log(userCredential)
       // setRegdata({
       //   email: "",

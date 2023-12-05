@@ -103,3 +103,15 @@
   left: 420px;
   top: 17px;
 }
+.previewbox{
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #bebec0;
+}
+.img-preview{
+  width: 100px;
+  height: 100px;
+  
+}
